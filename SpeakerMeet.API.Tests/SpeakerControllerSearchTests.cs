@@ -29,7 +29,7 @@ public class SpeakerControllerSearchTests
         }
     
     }    
-[Fact]
+[Fact(Skip = "Более не требуется")]
 public void GivenExactMatchThenOneSpeakerInCollection()
 {
   // Arrange
@@ -37,6 +37,21 @@ public void GivenExactMatchThenOneSpeakerInCollection()
   var result = _controller.Search("Joshua") as OkObjectResult;
 
   // Assert  
+  var speakers = ((IEnumerable<Speaker>)result.Value).ToList();
+  Assert.Equal(1, speakers.Count);
+  Assert.Equal("Joshua", speakers[0].Name);
+}
+    [Theory]
+[InlineData("Joshua")]
+[InlineData("joshua")]
+[InlineData("JoShUa")]
+public void GivenCaseInsensitveMatchThenSpeakerInCollection (string searchString)
+{
+  // Arrange
+  // Act
+  var result = _controller.Search(searchString) as OkObjectResult;
+
+  // Assert
   var speakers = ((IEnumerable<Speaker>)result.Value).ToList();
   Assert.Equal(1, speakers.Count);
   Assert.Equal("Joshua", speakers[0].Name);
