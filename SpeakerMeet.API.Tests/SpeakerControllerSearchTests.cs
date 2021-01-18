@@ -19,7 +19,7 @@ public class SpeakerControllerSearchTests
             controller.Search("Jos");
         }
 
-        [Fact]
+        [Fact(Skip = "Более не требуется")]
         public void ItReturnsOkObjectResult()
         { 
             var controller = new SpeakerController();
@@ -27,5 +27,18 @@ public class SpeakerControllerSearchTests
             Assert.NotNull(result);                    //Поиск принес результат?
             Assert.IsType<OkObjectResult>(result);     //Результат ОК?
         }
+    
     }    
+[Fact]
+public void GivenExactMatchThenOneSpeakerInCollection()
+{
+  // Arrange
+  // Act
+  var result = _controller.Search("Joshua") as OkObjectResult;
+
+  // Assert  
+  var speakers = ((IEnumerable<Speaker>)result.Value).ToList();
+  Assert.Equal(1, speakers.Count);
+  Assert.Equal("Joshua", speakers[0].Name);
+}
 }
