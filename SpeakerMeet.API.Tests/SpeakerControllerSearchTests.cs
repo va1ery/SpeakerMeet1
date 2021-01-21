@@ -68,7 +68,7 @@ public class SpeakerControllerSearchTests
         [Fact]
         public void Given3MatchThenCollectionWith3Speakers()
         {
-             var result = controller.Search("jos") as OkObjectResult;  
+             var result = _controller.Search("jos") as OkObjectResult;  
             var speakers = ((IEnumerable<Speaker>)result.Value).ToList();
             Assert.Equal(3, speakers.Count);
             Assert.True(speakers.Any(s => s.Name == "Josh"));
