@@ -9,19 +9,19 @@ namespace SpeakerMeet.API.Tests
 {
 public class SpeakerControllerSearchTests 
     {
-    [Fact(Skip = "Более не требуется")]
+    [Fact/*(Skip = "Более не требуется")*/]
     public void ItExists()
         {
             var controller = new SpeakerController();
         }
-        [Fact(Skip = "Более не требуется")]
+        [Fact/*(Skip = "Более не требуется")*/]
     public void ItHasSearch() //Проверяем наличие метода Поиск
         {
             var controller = new SpeakerController();
             controller.Search("Jos");
         }
 
-        [Fact(Skip = "Более не требуется")]
+        [Fact/*(Skip = "Более не требуется")*/]
         public void ItReturnsOkObjectResult()
         { 
             var controller = new SpeakerController();
@@ -68,7 +68,7 @@ public class SpeakerControllerSearchTests
         [Fact]
         public void Given3MatchThenCollectionWith3Speakers()
         {
-             var result = _controller.Search("jos") as OkObjectResult;  
+             var result = controller.Search("jos") as OkObjectResult;  
             var speakers = ((IEnumerable<Speaker>)result.Value).ToList();
             Assert.Equal(3, speakers.Count);
             Assert.True(speakers.Any(s => s.Name == "Josh"));
