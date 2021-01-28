@@ -4,7 +4,7 @@ dist: bionic
 mono: none
 dotnet: 5.0
 install: 
-    - dotnet restore
+    - dotnet restore ./SpeakerMeet.API/SpeakerMeet.API.csproj
 script:
-    - dotnet build
+    - dotnet build ./SpeakerMeet.API/SpeakerMeet.API.csproj
     - dotnet test ./SpeakerMeet.API.Tests/SpeakerMeet.API.Tests.csproj
